@@ -1,13 +1,14 @@
 public class EmpWage {
-    public static void main(String[] args) {
-        final int IS_PRESENT_FULL_TIME=1;
-        final int IS_PRESENT_HALF_TIME=2;
-        final int WAGE_PER_HOUR=20;
-        final int MAX_WORK_DAYS=20;
-        final int MAX_WORK_HOURS=100;
-        int totalSalary=0;
+    public static final int IS_PRESENT_FULL_TIME=1;
+    public static final int IS_PRESENT_HALF_TIME=2;
+    public static final int WAGE_PER_HOUR=20;
+    public static final int MAX_WORK_DAYS=20;
+    public static final int MAX_WORK_HOURS=100;
+
+    public static int computeEmpWage(){
         int totalWorkHrs=0;
         int days=0;
+
         while(days<MAX_WORK_DAYS && totalWorkHrs<MAX_WORK_HOURS) {
             int empWorkHrs=0;
             int empCheck = (int) Math.floor(Math.random() * 10) % 3; //to randomly generate num. 0 or 1
@@ -25,7 +26,12 @@ public class EmpWage {
             totalWorkHrs+=empWorkHrs;
             days++;
         }
-        totalSalary=WAGE_PER_HOUR * totalWorkHrs;
+        int totalSalary=WAGE_PER_HOUR * totalWorkHrs;
+        return totalSalary;
+    }
+    public static void main(String[] args) {
+
+        int totalSalary=computeEmpWage();
         System.out.println("Employee Monthly Wage is:"+totalSalary);
     }
 }
