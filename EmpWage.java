@@ -1,37 +1,37 @@
 public class EmpWage {
+    //constants
     public static final int IS_PRESENT_FULL_TIME=1;
     public static final int IS_PRESENT_HALF_TIME=2;
-    public static final int WAGE_PER_HOUR=20;
-    public static final int MAX_WORK_DAYS=20;
-    public static final int MAX_WORK_HOURS=100;
 
-    public static int computeEmpWage(){
-        int totalWorkHrs=0;
-        int days=0;
-
-        while(days<MAX_WORK_DAYS && totalWorkHrs<MAX_WORK_HOURS) {
-            int empWorkHrs=0;
-            int empCheck = (int) Math.floor(Math.random() * 10) % 3; //to randomly generate num. 0 or 1
+    public static int computeEmpWage(String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth) {
+        //variables
+        int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
+        //Computation
+        while (totalEmpHrs <= maxHoursPerMonth && totalWorkingDays < numOfWorkingDays) {
+            totalWorkingDays++;
+            int empCheck = (int) Math.floor(Math.random() * 10) % 3;
             switch (empCheck) {
                 case IS_PRESENT_FULL_TIME:
-                    empWorkHrs = 8;
+                    empHrs = 8;
                     break;
                 case IS_PRESENT_HALF_TIME:
-                    empWorkHrs = 4;
+                    empHrs = 4;
                     break;
                 default:
-                    empWorkHrs = 0;
+                    empHrs = 0;
                     break;
             }
-            totalWorkHrs+=empWorkHrs;
-            days++;
+            totalEmpHrs += empHrs;
+            System.out.println("Day#: "+ totalWorkingDays + " Emp Hr: " + empHrs);
         }
-        int totalSalary=WAGE_PER_HOUR * totalWorkHrs;
-        return totalSalary;
+        int totalEmpWage = totalEmpHrs * empRatePerHour;
+        System.out.println("Total Emp Wage for Company: "+company+" is: "+totalEmpWage);
+        return totalEmpWage;
     }
+
     public static void main(String[] args) {
 
-        int totalSalary=computeEmpWage();
-        System.out.println("Employee Monthly Wage is:"+totalSalary);
+        computeEmpWage("Dmart", 20, 2, 10);
+        computeEmpWage("Reliance", 10, 4, 20);
     }
 }
